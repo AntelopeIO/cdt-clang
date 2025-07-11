@@ -1043,6 +1043,13 @@ The ``eosio::read_only`` attribute marks a method as being a read-only action.
   }];
 }
 
+def EosioCallDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::call`` attribute marks a method as being a sync call function.
+  }];
+}
+
 def EosioTableDocs : Documentation {
   let Category = DocCatFunction;
   let Content = [{
