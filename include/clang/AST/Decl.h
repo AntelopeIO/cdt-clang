@@ -1926,7 +1926,9 @@ public:
   bool isEosioWasmEntry()const;
   bool isEosioWasmImport()const;
   bool isEosioWasmAction()const;
+  bool isEosioWasmCall()const;
   std::string getEosioWasmAction()const;
+  std::string getEosioWasmCall()const;
   bool isEosioWasmNotify()const;
   std::string getEosioWasmNotify()const;
 

@@ -2996,6 +2996,7 @@ llvm::Constant *CodeGenModule::GetOrCreateLLVMFunction(
   bool isWasmEntry  = false;
   bool isWasmABI    = false;
   bool isWasmAction = false;
+  bool isWasmCall   = false;
   bool isWasmNotify = false;
 
   // Any attempts to use a MultiVersion function should result in retrieving
@@ -3009,6 +3010,8 @@ llvm::Constant *CodeGenModule::GetOrCreateLLVMFunction(
         isWasmABI = true;
      if (FD->hasAttr<EosioWasmActionAttr>())
         isWasmAction = true;
+     if (FD->hasAttr<EosioWasmCallAttr>())
+        isWasmCall = true;
      if (FD->hasAttr<EosioWasmNotifyAttr>())
         isWasmNotify = true;
 
@@ -3145,6 +3148,10 @@ llvm::Constant *CodeGenModule::GetOrCreateLLVMFunction(
   if (isWasmAction)
      if (const FunctionDecl *FD = cast_or_null<FunctionDecl>(D)) {
         F->addFnAttr("eosio_wasm_action", FD->getEosioWasmAction().c_str());
+     }
+  if (isWasmCall)
+     if (const FunctionDecl *FD = cast_or_null<FunctionDecl>(D)) {
+        F->addFnAttr("eosio_wasm_call", FD->getEosioWasmCall().c_str());
      }
   if (isWasmNotify)
      if (const FunctionDecl *FD = cast_or_null<FunctionDecl>(D)) {
