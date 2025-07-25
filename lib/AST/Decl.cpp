@@ -4582,6 +4582,7 @@ std::string FunctionDecl::getWasmABI()const { return getAttr<EosioWasmABIAttr>()
 bool FunctionDecl::isEosioWasmEntry()const { return hasAttr<EosioWasmEntryAttr>(); }
 bool FunctionDecl::isEosioWasmImport()const { return hasAttr<EosioWasmImportAttr>(); }
 bool FunctionDecl::isEosioWasmAction()const { return hasAttr<EosioWasmActionAttr>(); }
+bool FunctionDecl::isEosioWasmCall()const { return hasAttr<EosioWasmCallAttr>(); }
 std::string FunctionDecl::getEosioWasmAction()const { return getAttr<EosioWasmActionAttr>()->getName(); }
 std::string FunctionDecl::getEosioWasmCall()const { return getAttr<EosioWasmCallAttr>()->getName(); }
 bool FunctionDecl::isEosioWasmNotify()const { return hasAttr<EosioWasmNotifyAttr>(); }

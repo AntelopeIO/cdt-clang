@@ -453,6 +453,18 @@ static void handleEosioWasmActionAttribute(Sema &S, Decl *D, const ParsedAttr &A
                                 AL.getAttributeSpellingListIndex()));
 }
 
+static void handleEosioWasmCallAttribute(Sema &S, Decl *D, const ParsedAttr &AL) {
+  // Handle the cases where the attribute has a text message.
+  StringRef Str;
+  if (AL.isArgExpr(0) && AL.getArgAsExpr(0) &&
+      !S.checkStringLiteralArgumentAttr(AL, 0, Str))
+    return;
+
+  D->addAttr(::new (S.Context)
+                 EosioWasmCallAttr(AL.getRange(), S.Context, Str,
+                                   AL.getAttributeSpellingListIndex()));
+}
+
 static void handleEosioWasmNotifyAttribute(Sema &S, Decl *D, const ParsedAttr &AL) {
   // Handle the cases where the attribute has a text message.
   StringRef Str;
@@ -6775,6 +6787,9 @@ static void ProcessDeclAttribute(Sema &S, Scope *scope, Decl *D,
     break;
   case ParsedAttr::AT_EosioWasmAction:
     handleEosioWasmActionAttribute(S, D, AL);
+    break;
+  case ParsedAttr::AT_EosioWasmCall:
+    handleEosioWasmCallAttribute(S, D, AL);
     break;
   case ParsedAttr::AT_EosioWasmNotify:
     handleEosioWasmNotifyAttribute(S, D, AL);
