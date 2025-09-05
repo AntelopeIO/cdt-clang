@@ -1057,6 +1057,27 @@ The ``eosio::table`` attribute marks a record as being an eosio table.
   }];
 }
 
+def EosioEventIndexedDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::indexed`` attribute marks a struct member (part of an eosio event) as being indexed.
+  }];
+}
+
+def EosioEventNotifyDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::notify`` attribute marks a struct member (part of an eosio event) as being an account name.
+  }];
+}
+
+def EosioEventDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::event`` attribute marks a record as being an eosio event.
+  }];
+}
+
 def NoSplitStackDocs : Documentation {
   let Category = DocCatFunction;
   let Content = [{

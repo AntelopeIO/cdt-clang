@@ -1124,6 +1124,25 @@ def EosioTable : InheritableAttr {
    let Documentation = [EosioTableDocs];
 }
 
+def EosioEventIndexed : InheritableAttr {
+  let Spellings = [CXX11<"eosio", "indexed">, GNU<"eosio_indexed">];
+  let Subjects = SubjectList<[NonBitField], ErrorDiag>;
+  let Documentation = [EosioReadOnlyDocs];
+}
+
+def EosioEventNotify : InheritableAttr {
+  let Spellings = [CXX11<"eosio", "notify">, GNU<"eosio_notify">];
+  let Subjects = SubjectList<[NonBitField], ErrorDiag>;
+  let Documentation = [EosioReadOnlyDocs];
+}
+
+def EosioEvent : InheritableAttr {
+  let Spellings = [CXX11<"eosio", "event">, GNU<"eosio_event">];
+  let Subjects = SubjectList<[CXXRecord]>;
+  let MeaningfulToClassTemplateDefinition = 1;
+  let Documentation = [EosioReadOnlyDocs];
+}
+
 def CXX11NoReturn : InheritableAttr {
   let Spellings = [CXX11<"", "noreturn", 200809>];
   let Subjects = SubjectList<[Function], ErrorDiag>;
